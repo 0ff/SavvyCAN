@@ -92,6 +92,16 @@
          </widget>
         </item>
         <item>
+         <widget class="QRadioButton" name="rbLawicel">
+          <property name="text">
+           <string>Lawicel Serial</string>
+          </property>
+          <property name="checked">
+           <bool>false</bool>
+          </property>
+         </widget>
+        </item>
+        <item>
          <widget class="QRadioButton" name="rbKvaser">
           <property name="enabled">
            <bool>false</bool>

@@ -90,7 +90,7 @@ Qt::ItemFlags CANConnectionModel::flags(const QModelIndex &index) const
     //you can't set speed, single wire, or listen only on socketcan devices so
     //detect if we're using GVRET where you can and turn that functionality on
     bool editParams = false;
-    if (conn_p->getType() == CANCon::GVRET_SERIAL) editParams = true;
+    if (conn_p->getType() == CANCon::GVRET_SERIAL || conn_p->getType() == CANCon::LAWICEL_SERIAL) editParams = true;
 
     switch (Column(index.column()))
     {
@@ -169,6 +169,7 @@ QVariant CANConnectionModel::data(const QModelIndex &index, int role) const
                         case CANCon::KVASER: return "KVASER";
                         case CANCon::SOCKETCAN: return "SocketCAN";
                         case CANCon::GVRET_SERIAL: return "GVRET";
+                        case CANCon::LAWICEL_SERIAL: return "Lawicel";
                         default: {}
                     }
                 else qDebug() << "Tried to show connection type but connection was NULL";

@@ -12,6 +12,7 @@ SOURCES += \
     ../connections/canconfactory.cpp \
     ../connections/canconnection.cpp \
     ../connections/gvretserial.cpp \
+    ../connections/lawicelserial.cpp \
     ../connections/socketcan.cpp \
     ../canbus.cpp
 
@@ -29,5 +30,6 @@ HEADERS += \
     ../connections/canconfactory.h \
     ../connections/canconnection.h \
     ../connections/gvretserial.h \
+    ../connections/lawicelserial.h \
     ../connections/socketcan.h \
     ../canbus.h

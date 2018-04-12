@@ -15,6 +15,7 @@ namespace CANCon {
     enum type
     {
         GVRET_SERIAL,
+        LAWICEL_SERIAL,
         KVASER,
         SOCKETCAN,
         NONE

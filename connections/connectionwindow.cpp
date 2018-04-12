@@ -50,6 +50,7 @@ ConnectionWindow::ConnectionWindow(QWidget *parent) :
 
     connect(ui->btnOK, &QAbstractButton::clicked, this, &ConnectionWindow::handleOKButton);
     connect(ui->rbGVRET, &QAbstractButton::clicked, this, &ConnectionWindow::handleConnTypeChanged);
+    connect(ui->rbLawicel, &QAbstractButton::clicked, this, &ConnectionWindow::handleConnTypeChanged);
     connect(ui->rbKvaser, &QAbstractButton::clicked, this, &ConnectionWindow::handleConnTypeChanged);
     connect(ui->rbSocketCAN, &QAbstractButton::clicked, this, &ConnectionWindow::handleConnTypeChanged);
     connect(ui->tableConnections->selectionModel(), &QItemSelectionModel::currentRowChanged, this, &ConnectionWindow::currentRowChanged);
@@ -224,6 +225,7 @@ void ConnectionWindow::handleDisableAll()
 void ConnectionWindow::handleConnTypeChanged()
 {
     if (ui->rbGVRET->isChecked()) selectSerial();
+    if (ui->rbLawicel->isChecked()) selectSerial();
     if (ui->rbKvaser->isChecked()) selectKvaser();
     if (ui->rbSocketCAN->isChecked()) selectSocketCan();
 }
@@ -360,6 +362,9 @@ void ConnectionWindow::setPortName(CANCon::type pType, QString pPortName)
         case CANCon::GVRET_SERIAL:
             ui->rbGVRET->setChecked(true);
             break;
+        case CANCon::LAWICEL_SERIAL:
+            ui->rbLawicel->setChecked(true);
+            break;
         case CANCon::KVASER:
             ui->rbKvaser->setChecked(true);
             break;
@@ -376,6 +381,7 @@ void ConnectionWindow::setPortName(CANCon::type pType, QString pPortName)
     switch(pType)
     {
         case CANCon::GVRET_SERIAL:
+        case CANCon::LAWICEL_SERIAL:
         {
             int idx = ui->cbPort->findText(pPortName);
             if( idx<0 ) idx=0;
@@ -402,6 +408,7 @@ QString ConnectionWindow::getPortName()
 {
     switch( getConnectionType() ) {
     case CANCon::GVRET_SERIAL:
+    case CANCon::LAWICEL_SERIAL:
     case CANCon::KVASER:
         return ui->cbPort->currentText();
     case CANCon::SOCKETCAN:
@@ -416,6 +423,7 @@ QString ConnectionWindow::getPortName()
 CANCon::type ConnectionWindow::getConnectionType()
 {
     if (ui->rbGVRET->isChecked()) return CANCon::GVRET_SERIAL;
+    if (ui->rbLawicel->isChecked()) return CANCon::LAWICEL_SERIAL;
     if (ui->rbKvaser->isChecked()) return CANCon::KVASER;
     if (ui->rbSocketCAN->isChecked()) return CANCon::SOCKETCAN;
 

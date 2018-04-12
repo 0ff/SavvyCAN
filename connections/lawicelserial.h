@@ -1,5 +1,5 @@
-#ifndef GVRETSERIAL_H
-#define GVRETSERIAL_H
+#ifndef LAWICELSERIAL_H
+#define LAWICELSERIAL_H
 
 #include <QSerialPort>
 #include <QCanBusDevice>
@@ -14,36 +14,17 @@
 #include "canconnection.h"
 #include "canconmanager.h"
 
-namespace SERIALSTATE {
-
-enum STATE
-{
-    IDLE,
-    GET_COMMAND,
-    BUILD_CAN_FRAME,
-    TIME_SYNC,
-    GET_DIG_INPUTS,
-    GET_ANALOG_INPUTS,
-    SET_DIG_OUTPUTS,
-    SETUP_CANBUS,
-    GET_CANBUS_PARAMS,
-    GET_DEVICE_INFO,
-    SET_SINGLEWIRE_MODE,
-    GET_NUM_BUSES,
-    GET_EXT_BUSES,
-    ERROR
-};
-
-}
+// reuse STATE
+#include "gvretserial.h"
 
 using namespace SERIALSTATE;
-class GVRetSerial : public CANConnection
+class LawicelSerial : public CANConnection
 {
     Q_OBJECT
 
 public:
-    GVRetSerial(QString portName);
-    virtual ~GVRetSerial();
+    LawicelSerial(QString portName);
+    virtual ~LawicelSerial();
 
 protected:
 
@@ -97,4 +78,4 @@ protected:
     uint64_t timeAtGVRETSync;
 };
 
-#endif // GVRETSERIAL_H
+#endif // LAWICELSERIAL_H
